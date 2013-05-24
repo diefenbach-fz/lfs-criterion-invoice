@@ -29,7 +29,6 @@ class InvoiceCriterion(Criterion):
 
     def is_valid(self):
         customer = lfs.customer.utils.get_customer(self.request)
-        if customer:
-            return customer.allow_invoice
-        else:
-            return False
+        if customer and customer.allow_invoice:
+            return True
+        return False
